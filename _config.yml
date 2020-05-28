@@ -12,12 +12,10 @@ author: Ismael Dassi
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
+  Blog: 'blog'
+  Projects: 'projects'
   Author's home: "https://github.com/messaismael"
-
+  About Me/ Contact: "aboutme"
 # --- Logo --- #
 
 # Image to show in the navigation bar - works best with a square image
@@ -96,6 +94,7 @@ footer-link-col: "#404040"
 #navbar-img: "/assets/img/bgimage.png"
 #footer-img: "/assets/img/bgimage.png"
 #page-img: "/assets/img/bgimage.png"
+cover-img: "/assets/img/cover.png"
 
 # --- Web Statistics Section --- #
 
