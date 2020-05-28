@@ -2,6 +2,4 @@
 layout: home
 title: Hi I'm Ismael
 subtitle: Back-end / Front-end devoloper
-cover-img: "/assets/img/cover.png"
 ---
-
