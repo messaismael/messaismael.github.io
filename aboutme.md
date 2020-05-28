@@ -1,16 +1,29 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: why should you trust me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+### Hi I'm Ismael Dassi
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+#### I'm a full-stack developer
 
-What else do you need?
+From Web Components and UI to React.JS and Node.JS.Check out my skills.
+
+- Javascript
+
+- React.JS
+- Node.JS
+- Express.js
+- React Native
+- MongoDB
+- Helmet.js
+- D3.JS
+
+- Python
+
+#### I want to do things that make difference
 
 ### my history
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+I started programming following on [FreecodCamp](https://www.freecodecamp.org/) curriculum ,it is a good platform to learn coding .
