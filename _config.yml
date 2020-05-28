@@ -12,9 +12,9 @@ author: Ismael Dassi
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Blog: 'blog'
+  Blog: ""
   Projects: 'projects'
-  About Me/ Contact: "aboutme"
+  About Me: "aboutme"
 # --- Logo --- #
 
 # Image to show in the navigation bar - works best with a square image

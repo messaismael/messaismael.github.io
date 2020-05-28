@@ -11,7 +11,6 @@ subtitle: why should you trust me
 From Web Components and UI to React.JS and Node.JS.Check out my skills.
 
 - Javascript
-
 - React.JS
 - Node.JS
 - Express.js
@@ -19,7 +18,6 @@ From Web Components and UI to React.JS and Node.JS.Check out my skills.
 - MongoDB
 - Helmet.js
 - D3.JS
-
 - Python
 
 #### I want to do things that make difference
