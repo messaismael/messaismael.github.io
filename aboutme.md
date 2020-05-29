@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-subtitle: why should you trust me
+subtitle: why you should trust me
 ---
 
 ### Hi I'm Ismael Dassi
@@ -24,4 +24,4 @@ From Web Components and UI to React.JS and Node.JS.Check out my skills.
 
 ### my history
 
-I started programming following on [FreecodCamp](https://www.freecodecamp.org/) curriculum ,it is a good platform to learn coding .
+I started programming following [FreecodeCamp](https://www.freecodecamp.org/) curriculum,it is a good platform to learn coding .
