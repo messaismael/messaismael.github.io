@@ -16,9 +16,9 @@ In this article i want to show you how to run yours react project with Electron.
 
 For this we will use [create-react-app](https://create-react-app.dev/docs/getting-started/).
 
-~~~-
+~~~
 & npx create-react-app App
-& cd App 
+& cd App
 & npm start
 ~~~
 
