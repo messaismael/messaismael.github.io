@@ -67,10 +67,10 @@ const electron = require('electron')
     <script src="https://gist.github.com/messaismael/72bdc2374a44d85813f7e7c5b10ae981.js"></script>
 
     and in ``script`` field add this command:
-     
-     ~~~
+
+    ~~~
     "electron": "electron ."
-     ~~~
+    ~~~
 
 ## Running app
 
@@ -78,10 +78,10 @@ to run
 
 ~~~
 & npm run electon
-~~~     
+~~~
 
 we will have this result
 
 ![Crepe](/assets/img/Screenshot-quote.png){: .mx-auto.d-block :}
 
-Thank you for your attention!!
+Thank you for your attention!

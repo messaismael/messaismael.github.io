@@ -14,7 +14,7 @@ author: Ismael Dassi
 navbar-links:
   Blog: "/"
   Projects: 'projects'
-   Tags: "https://messaismael.github.io/tags/"
+  Tags: "https://messaismael.github.io/tags/"
   About Me: "aboutme"
 # --- Logo --- #
 
