@@ -4,7 +4,7 @@ title: About me
 subtitle: why you should trust me
 ---
 
-### Hi I'm Ismael Dassi
+### Hello I'm Messa Ismaël
 
 #### I'm a full-stack developer
 
