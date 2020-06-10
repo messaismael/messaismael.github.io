@@ -24,8 +24,7 @@ From Web Components and UI to React.JS and Node.JS.Check out my skills.
 
 ### my history
 
-I started programming following [FreecodeCamp](https://www.freecodecamp.org/) curriculum,it is a good platform to learn coding . And at the end of each curriculum, you are rewarded with  certifiction.
-In my case, here are the certifications that I have accumulated:
+I started programming following [FreeCodeCamp](https://www.freecodecamp.org/) curriculum, It's a good platform to learn coding and at the end of each curriculum, you are rewarded with a certification. In my case, here are the certifications that I have accumulated:
 
 - [JavaScript Algorithms and Data Structures](https://www.freecodecamp.org/certification/ismael/javascript-algorithms-and-data-structures)
 - [Front End Libraries](https://www.freecodecamp.org/certification/ismael/front-end-libraries)

@@ -10,7 +10,7 @@ comments: true
 ---
 
 
-In this article i want to show you how to run yours react project with Electron.The original project describe in this article is [here](https://github.com/messaismael/quote-machine-electronJS).
+In this article i want to show you how to run yours react project with Electron.
 
 ## Creacte a React App
 
@@ -34,7 +34,7 @@ for that:
 
 ## Installing ElectronJS
 
-Here we will electron as dev dependencies
+Here we will add electron as dev dependencies
 
 ~~~
 & npm install --save-dev electron
@@ -50,19 +50,19 @@ const electron = require('electron')
 
 - config main.js file
 
-    first of all create ``main.js`` file
+    first of all create **main.js** file
 
     ~~~
     & touch main.js
     ~~~
 
-    then in main.jsfile we will paste this folliwing code
+    then in **main.js** file we will paste this folliwing code
 
     <script src="https://gist.github.com/messaismael/0311bd999853adadf2b9fe3ae84f8820.js"></script>
 
 - config ``package.json``
 
-    In ``package.json`` file we will add "main"field and pass "main.js" as value and add"homepage" field with "." as value like this
+    In ``package.json`` file we will add ``"main"`` field and pass ``"main.js"`` as value and add"homepage" field with "." as value like this
 
     <script src="https://gist.github.com/messaismael/72bdc2374a44d85813f7e7c5b10ae981.js"></script>
 

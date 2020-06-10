@@ -4,11 +4,11 @@ title: My Projects
 subtitle:   
 ---
 
-This is a collection of projects i made.
+Here is a collection of projects I made.
 
 ### Projects
 
-- [FocusTimer](https://github.com/messaismael/Pomodoro-Clock): it is a cutomized pomodoro clock. It is available on linux, windows, chrome extension and [web application](https://codepen.io/messaismael/full/BaaRQWa).
+- [FocusTimer](https://github.com/messaismael/Pomodoro-Clock): it's a cutomized Pomodoro Clock.Available available on linux, windows, chrome extension and as [web application](https://codepen.io/messaismael/full/BaaRQWa).
 
 - [Native calculator](https://github.com/messaismael/native-calculator): simple calculator in React Native.
 
@@ -17,10 +17,10 @@ This is a collection of projects i made.
 - [Metric-converter](https://github.com/messaismael/FCC-Metric-converter): a microservice that allows you to convert kg(kilograms),l(liters), km(kilometers) to lbs(pounds), gal(gallons), mi(mile) respectively.
 
 - [quote-machine](https://github.com/messaismael/quote-machine-electronJS):
-an application that generates a random quote on click, its executable is generates with Electron.JS .
+An application that generates a random quote on click, its executable is generated with ElectronJS .
 
 - [issues-tracker](https://github.com/messaismael/Fcc-issue-tracker): a microservice that allows developers to manage issues.
 
-- [Heat-map](https://github.com/messaismael/FCC-Heat-map): it is a data visualization application for temperature.
+- [Heat-map](https://github.com/messaismael/FCC-Heat-map): A data visualization application for temperatures.
 
-- [Bar-chart](https://github.com/messaismael/Bar-chart): it is a data visualization for United States GDP.
+- [Bar-chart](https://github.com/messaismael/Bar-chart): A data visualization for United States GDP.
