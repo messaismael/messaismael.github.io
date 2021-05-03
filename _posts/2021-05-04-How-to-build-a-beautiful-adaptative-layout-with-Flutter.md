@@ -4,12 +4,12 @@ title: How to build a beautiful adaptative layout with Flutter
 subtitle: Learn Flutter
 gh-repo: messaismael/e-commerce-mobile-app
 gh-badge: [fork, follow]
-cover-img: /assets/img/article2/cover.jpeg
+cover-img: /assets/img/article2/cover.jpg
 tags: [tutorial]
 comments: true
 ---
 
-## **``What is Flutter``**
+## **What is Flutter**
 
 **Flutter** is an open-source mobile application development SDK that is created by **Google**. It is used to develop applications for **Android** and **IOS**.
 
@@ -19,11 +19,12 @@ In this article, we will build the following app designed by [Vijay Gupta](https
 
 Visibly it looks complicated🤔, but this is not the case no worry!!!😇
 
-## **``Step 1: Implement the flutter app structure``**
+## **Step 1: Implement the flutter app structure**
 
 For that, we will use the Scaffold widget. The Scaffold is a widget in Flutter used to implements the basic material design visual layout structure
 
-```.
+```
+
 ...
 return Scaffold(
   appBar: AppBar(
@@ -59,17 +60,18 @@ return Scaffold(
   ),
   body: Center(child: Text("Hello world! "))
 );
+
 ```
 
 **Scaffold** contains various functionality from giving an **appbar**, **body**, a floating button, a drawer
 
-- appBar
+- **appBar**
 
   The Appbar is divided into 5 part like you can see below
 
 ![img2](/assets/img/article2/img2.png){: .mx-auto.d-block :}
 
-- body
+- **body**
 
   Here we are going to write our stuff
 
@@ -77,7 +79,7 @@ And we have this after 😃!!
 
 ![img3](/assets/img/article2/img3.png){: .mx-auto.d-block :}
 
-## **``Step 2: Implement the bottom navigation bar``**
+## **Step 2: Implement the bottom navigation bar**
 
 ![img4](/assets/img/article2/img4.png){: .mx-auto.d-block :}
 
@@ -85,7 +87,7 @@ In the code below we create a **Stateless BottomNavBar widget**, that takes in p
 
 <script src="https://gist.github.com/messaismael/20087c6821ef52fda0ebf0eeeea9e008.js"></script>
 
-## **``Step 3: Implement the card of the product``**
+## **Step 3: Implement the card of the product**
 
 For that, we are going to create a **widget** called **ProductCard**. The main role of the **ProductCard widget** is to display each product with the layout below:
 
@@ -100,12 +102,13 @@ The code below can enlighten you 🧐!
 
 <script src="https://gist.github.com/messaismael/2a0abce26becedeb9e70f2990580f2fe.js"></script>
 
-## **``Step 4: Implement the product list``**
+## **Step 4: Implement the product list**
 
 Here we will have another widget called **ProductList**, this widget has to goal to display the list of **ProductCard** like a grid. For that, we will use the **GridView widget**.
 **Gridview** is a widget in flutter that displays the items in a 2-D array(two-dimensional rows and columns). The code that follows is an implementation of **adaptative Gridview** with the method **extent** :
 
-```.
+```
+
 class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -126,9 +129,10 @@ class ProductList extends StatelessWidget {
     );
   }
 }
+
 ```
 
-## **``Step 5: Implement the Carousel 🎠 slider``**
+## **Step 5: Implement the Carousel 🎠 slider**
 
 ![img6](/assets/img/article2/img6.png){: .mx-auto.d-block :}
 
@@ -136,7 +140,8 @@ The carousel package we will be using is ``carousel_slider``: [https://pub.dev/p
 
 In the ``pubspec.yaml`` file adds the current package like this:
 
-```.
+```
+
 name: flutter_app
 description: A new Flutter project.
 publish_to: 'none'
@@ -148,15 +153,21 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   carousel_slider: 3.0.0
+
+
 ```
 
-Next, run ***$ flutter  package get***
+Next, run
+
+  ~~~
+  $ flutter  package get
+  ~~~
 
 Below you can see the implementation of the **CarouselWidget**:
 
 <script src="https://gist.github.com/messaismael/cc2808c3ad2fc2a4463f0e218234d867.js"></script>
 
-## ``Step 6: The widgets assembly``
+## **Step 6: The widgets assembly**
 
 Yes, it's in this part that we are going to call our widgets in the main **widget MyHomePage**. We have this after:
 
