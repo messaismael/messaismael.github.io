@@ -4,7 +4,7 @@ title: How to run a React App  with ElectronJS
 subtitle: Deploy React App with electronJs
 gh-repo: messaismael/quote-machine-electronJS
 gh-badge: [fork, follow]
-cover-img: /assets/img/electronCoverImg.jpeg
+cover-img: /assets/img/article1/electronCoverImg.jpeg
 tags: [tutorial]
 comments: true
 ---
@@ -197,6 +197,6 @@ to run
 
 we will have this result
 
-![Crepe](/assets/img/Screenshot-quote.png){: .mx-auto.d-block :}
+![Crepe](/assets/img/article1/Screenshot-quote.png){: .mx-auto.d-block :}
 
 Thank you for your attention!
