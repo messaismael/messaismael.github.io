@@ -1,0 +1,42 @@
+# Donnees reutilisables du site, extraites de messaismael.github.io/_config.yml
+# (pas une copie brute -- juste les cles pertinentes pour la reconstruction)
+
+title: Ismael Messa
+author: Ismael Messa
+
+avatar: /assets/img/avatar.png
+round-avatar: true
+
+navbar-links:
+  Blog: /
+  Projects: projects
+  Tags: /tags
+  About Me: aboutme
+
+social-network-links:
+  email: messaismael01@gmail.com
+  github: messaismael
+  twitter: messaismael
+  linkedin: messaismael
+  rss: true
+
+analytics:
+  gtag: G-PR9V1BTVRC
+
+comments:
+  disqus-shortname: "@messaismael"
+
+domain: messaismael.com   # voir CNAME dans ce dossier
+
+home:   # ex index.html frontmatter -- pas de fichier dedie dans l'ancien repo
+  title: "Hi I'm Ismael"
+  subtitle: "Full-Stack 👨🏿‍💻 Developer & AWS Cloud ☁️ architect"
+  cover-img: /assets/img/cover.png
+  share-title: "Ismael Messa - Full-Stack 👨🏿‍💻 Developer & AWS Cloud ☁️ architect"
+  share-description: "Blog, project, and space for my experiments. Join me on my journey of exploration and discovery."
+  share-img: /assets/img/avatar.png
+
+not-found-page:   # ex 404.html
+  heading: "Whoops, this page doesn't exist."
+  subheading: "Move along. (404 error)"
+  img: /assets/img/404-southpark.jpg
