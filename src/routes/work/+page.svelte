@@ -12,7 +12,7 @@
 	</p>
 
 	<div class="mt-12 border-t">
-  	<ul class="max-w-xl divide-y border-b">
+  	<ul class="max-w-2xl divide-y border-b">
   		{#each projects as project, index (index)}
   			<li class="py-6">
   				<a

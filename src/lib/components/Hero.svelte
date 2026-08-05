@@ -24,7 +24,7 @@
 				{m.hero_pitch()}
 			</p>
 
-			<Button href="/work" variant="outline" size="lg" class="mt-8">{m.hero_cta_work()}</Button>
+			<Button href="/experience" variant="outline" size="lg" class="mt-8">{m.hero_cta_work()}</Button>
 
 			<div class="text-muted-foreground mt-14 flex items-center gap-5">
 				<a href="#" aria-label={m.social_github()} class="hover:text-foreground transition">
