@@ -20,5 +20,9 @@
 	"case_study_category": "Plateforme multi-agents",
 	"case_study_title": "Hermes AI",
 	"case_study_cta": "Explorer l'étude de cas",
-	"blog_empty": "Aucun article pour l'instant — repassez bientôt."
+	"blog_empty": "Aucun article pour l'instant — repassez bientôt.",
+	"blog_back": "Retour au blog",
+	"error_heading": "Signal Perdu",
+	"error_message": "Cette page a dérivé hors du système — elle a peut-être été déplacée, ou n'a jamais existé.",
+	"error_cta": "Retour à la Base"
 }

@@ -20,5 +20,9 @@
 	"case_study_category": "Multi-Agent Platform",
 	"case_study_title": "Hermes AI",
 	"case_study_cta": "Explore Case Study",
-	"blog_empty": "No posts yet — check back soon."
+	"blog_empty": "No posts yet — check back soon.",
+	"blog_back": "Back to Blog",
+	"error_heading": "Signal Lost",
+	"error_message": "This page drifted outside the system — it may have moved, or never existed.",
+	"error_cta": "Return to Base"
 }
