@@ -18,10 +18,11 @@ wiki/
 
 ## État actuel
 
-Wiki initialisé, vide — le projet est en tout début de migration (voir
-`../../messaismael.github.io/_plans/sveltekit-rebuild.md`). Sera enrichi au fur
-et à mesure des sessions, au moment où des conventions se stabilisent ou des
-décisions sont prises.
+Premières conventions et décisions capturées (design system couleurs,
+customisation shadcn-svelte, structure des composants, i18n ; adoption
+shadcn-svelte, langage graphique du hero). Le projet reste en tout début de
+migration (voir `../../messaismael.github.io/_plans/sveltekit-rebuild.md`).
+Sera enrichi au fur et à mesure des sessions.
 
 - [Conventions](./conventions/index.md)
 - [Décisions](./decisions/index.md)

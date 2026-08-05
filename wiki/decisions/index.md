@@ -10,4 +10,5 @@ Chaque page est loguée dans [`log.md`](./log.md).
 
 ## Pages
 
-_Aucune page pour l'instant._
+- [design-language-fashion-preview.md](./design-language-fashion-preview.md) — reprise du langage graphique d'un preview "Future Fashion" pour le hero, mapping contenu
+- [shadcn-svelte-adoption.md](./shadcn-svelte-adoption.md) — pourquoi shadcn-svelte (preset `vega`), thème dark forcé, polices auto-hébergées

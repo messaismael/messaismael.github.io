@@ -1,4 +1,24 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"hello_world": "Hello, {name} from en!",
+	"nav_brand": "Ismael Messa",
+	"nav_blog": "Blog",
+	"nav_work": "Work",
+	"nav_about": "About",
+	"nav_contact": "Contact",
+	"hero_headline_line1": "From",
+	"hero_headline_line2": "Idea",
+	"hero_headline_line3": "To",
+	"hero_headline_line4": "Autonomous",
+	"hero_headline_line5": "Systems",
+	"hero_pitch": "I design AI agents, automation workflows and cloud-native platforms that help businesses scale with intelligence.",
+	"hero_cta_work": "View My Work",
+	"social_github": "GitHub",
+	"social_linkedin": "LinkedIn",
+	"social_email": "Email",
+	"case_study_preview": "Case study preview",
+	"case_study_category": "Multi-Agent Platform",
+	"case_study_title": "Hermes AI",
+	"case_study_cta": "Explore Case Study",
+	"blog_empty": "No posts yet — check back soon."
 }
