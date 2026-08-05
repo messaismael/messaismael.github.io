@@ -20,9 +20,12 @@
 	"case_study_category": "Multi-Agent Platform",
 	"case_study_title": "Hermes AI",
 	"case_study_cta": "Explore Case Study",
-	"blog_empty": "No posts yet — check back soon.",
+	"work_description": "A selection of side projects from AWS microservices to small dev tools.",
+	"work_github_link": "GitHub ↗",
+	"blog_description": "Notes and tutorials on building AI agents, automation workflows, and cloud-native systems.",
+	"blog_empty": "No posts yet check back soon.",
 	"blog_back": "Back to Blog",
 	"error_heading": "Signal Lost",
-	"error_message": "This page drifted outside the system — it may have moved, or never existed.",
+	"error_message": "This page drifted outside the system it may have moved, or never existed.",
 	"error_cta": "Return to Base"
 }
