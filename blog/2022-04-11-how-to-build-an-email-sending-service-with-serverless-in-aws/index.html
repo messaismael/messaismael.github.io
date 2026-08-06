@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html class="dark" lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="text-scale" content="scale" />
+		<link href="../../_app/immutable/entry/start.10wmqbbm.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BII7gjJO.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/D04T-dpt.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/Dt-HX3Vu.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/app.CBnaowLf.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/GlKy7o4X.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/0.CgfFqwTu.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BulsLJy0.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/DwnQuuCI.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CFI0L1rS.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/6.MatdNBdC.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BelWyZaW.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BkyziS5Q.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="icon" href="/avatar.ico"/><!----><!--1teoznn--><!--[0--><meta name="description" content="Send Email using AWS SES"/><!--]--> <!--[0--><meta property="og:image" content="https://messaismael.com/assets/img/article4/cover.jpg"/><!--]--><!----><title>How to Build an Email Sending Service with Serverless in AWS — Ismael Messa</title>
+		<link href="../../_app/immutable/assets/components.6Y4tvQPI.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/0.FdmXoCZ6.css" rel="stylesheet">
+	</head>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100"><img src="/assets/background-monochome.png" alt="" class="absolute inset-0 h-full w-full scale-105 object-cover transition-[filter] duration-700 blur"/> <div class="absolute inset-0 bg-linear-to-r transition-opacity duration-700 from-background/70 via-background/45 to-background/70"></div> <div class="absolute inset-0 bg-linear-to-t from-background/50 via-transparent to-background/40"></div></div> <header class="sticky top-0 z-20 grid grid-cols-1 border-b transition-colors duration-300 lg:grid-cols-[1fr_1.15fr_1fr] bg-transparent"><div class="flex h-16 md:h-20 items-center justify-between px-6 lg:px-10"><a href="/" class="font-display text-sm tracking-[0.2em] uppercase">Ismael Messa</a></div> <div class="hidden items-center justify-center lg:flex"><img src="/assets/Union.png" alt="" class="h-6 w-auto opacity-70 pr-5"/></div> <div class="flex h-14 md:h-20 items-center justify-end gap-8 px-6 lg:px-10"><!--[--><a href="/blog" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition text-foreground!">Blog</a><a href="/experience" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">Experience</a><a href="/about" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">About</a><a href="/contact" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">Contact</a><!--]--></div></header><!----> <!--[--><article class="mx-auto max-w-2xl px-6 py-16 lg:px-10"><a href="../../blog/" class="inline-flex items-center gap-2 text-sm tracking-wide text-muted-foreground uppercase transition hover:text-foreground"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6"></path></svg> Back to Blog</a> <p class="mt-8 text-xs tracking-[0.2em] text-muted-foreground uppercase">2022-04-11</p> <h1 class="mt-2 font-display text-3xl font-semibold tracking-tight uppercase sm:text-4xl">How to Build an Email Sending Service with Serverless in AWS</h1> <!--[0--><p class="mt-3 text-base text-muted-foreground">Send Email using AWS SES</p><!--]--> <!--[0--><div class="mt-8 aspect-16/9 overflow-hidden border"><img src="/assets/img/article4/cover.jpg" alt="" class="h-full w-full object-cover grayscale"/></div><!--]--> <!--[0--><div class="mt-6 flex flex-wrap gap-2"><!--[--><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">tutorial</span><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">awsLambda</span><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">awsSES</span><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">nodeJS</span><!--]--></div><!--]--> <div class="prose mt-10 max-w-none prose-invert prose-headings:font-display prose-headings:uppercase prose-a:text-foreground prose-img:border"><!--[--><p>Sometimes when you have a web application or page, the users or visitors may want to contact you. For this, instead of leaving your email on your platform, you can provide the best user experience for users by giving them a specific page that could simplify the process.</p> <p>This is where the email sending service intervenes, which is a service that uses serverless compute (<strong>AWS Lambda</strong>) and <strong>AWS SES</strong> (Simple Email Service). So with serverless, you don’t take care of the underlying compute resources, you just focus on writing your source code, and with <strong>AWS SES</strong> it makes the process easy and quick to implement.</p> <p>In short, this article describes in detail how to implement an email sending service quickly and securely🙂.</p> <h2>Set up a node Project</h2> <h3>1. Initialize</h3> <pre class="language-undefined"><!----><code class="language-undefined">$ npm init</code><!----></pre> <h3>2. Install dependencies</h3> <pre class="language-undefined"><!----><code class="language-undefined">$ npm i typescript aws-sdk claudia-api-builder
+
+$ npm i @types/node --save-dev</code><!----></pre> <h3>3. Configure Typescript</h3> <p>Add <strong><code>/tsconfig.json</code></strong> file with the configs below:</p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token punctuation">&#123;</span>
+<span class="token string">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token string">"outDir"</span><span class="token operator">:</span> <span class="token string">"./build"</span><span class="token punctuation">,</span>
+<span class="token string">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span><span class="token punctuation">,</span>
+<span class="token string">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"esnext"</span><span class="token punctuation">,</span> <span class="token string">"dom"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"target"</span><span class="token operator">:</span> <span class="token string">"es6"</span><span class="token punctuation">,</span>
+<span class="token string">"esModuleInterop"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"allowSyntheticDefaultImports"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"noImplicitAny"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token string">"module"</span><span class="token operator">:</span> <span class="token string">"commonjs"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2>Configure Claudia</h2> <p><strong>Claudia</strong> is a tool that automates the deployment of AWS Lambda functions written in JavaScript and associated API Gateway configurations. It provides reasonable defaults, and it allows to get started quickly with Lambda-based microservices.</p> <p>But we will use <strong>Claudia API Builder</strong> which is an extension library for Claudia.js, it allows us to use API Gateway as if were a lightweight JavaScript web server.</p> <h3>1. Add policy</h3> <p><strong>A policy</strong> is an object in AWS that, when associated with an entity or resource, defines its permissions. The following policy permits us to send simple emails and raw emails with the <strong>SES</strong> service.</p> <p><strong><code>/policies/send-email.json</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token punctuation">&#123;</span>
+<span class="token string">"Version"</span><span class="token operator">:</span> <span class="token string">"2012-10-17"</span><span class="token punctuation">,</span>
+<span class="token string">"Statement"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+<span class="token punctuation">&#123;</span>
+<span class="token string">"Effect"</span><span class="token operator">:</span> <span class="token string">"Allow"</span><span class="token punctuation">,</span>
+<span class="token string">"Action"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+<span class="token string">"ses:SendEmail"</span><span class="token punctuation">,</span>
+<span class="token string">"ses:SendRawEmail"</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"Resource"</span><span class="token operator">:</span> <span class="token string">"*"</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3>2. Define Environment variables</h3> <p>Here we will manage environment variables in <strong><code>/env.json</code></strong> file, these variables will be available directly in configurations of our Lambda function.</p> <p>According to the environment (production, development), you can set <strong><code>/prod.json</code></strong> and <strong><code>/dev.json</code></strong> files.</p> <pre class="language-undefined"><!----><code class="language-undefined">&#123;
+  &quot;NODE_ENV&quot;: &quot;dev&quot;,
+  &quot;TO_EMAILS&quot;: &quot;exampleEmail@gmail.com&quot;
+&#125;</code><!----></pre> <p>Then with the <strong><code>/src/config/index.ts</code></strong> we will export these variables throughout the entirety of our project.</p> <pre class="language-undefined"><!----><code class="language-undefined">/**
+  * Config file
+*/
+
+export const ENV = process.env.NODE_ENV || &#39;dev&#39;;
+export const TO_EMAILS = (process.env.TO_EMAILS || &#39;&#39;).split(&#39;,&#39;);</code><!----></pre> <h3>3. Add the type of claudia-api-builder</h3> <p>At the time of writing this article, there was no yet declaration file in <code>@types</code> repository for Claudia API Builder, so let’s create our own in the project folder <strong><code>/@types/claudia-api-builder/index.d.ts</code></strong> with this as content:</p> <pre class="language-javascript"><!----><code class="language-javascript">declare module <span class="token string">'claudia-api-builder'</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">class</span> <span class="token class-name">ApiResponse</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token function">constructor</span><span class="token punctuation">(</span>response <span class="token operator">:</span> any<span class="token punctuation">,</span> headers <span class="token operator">:</span> any<span class="token punctuation">,</span> code<span class="token operator">?</span><span class="token operator">:</span> any<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">ApiBuilder</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> ApiResponse <span class="token operator">:</span> <span class="token keyword">typeof</span> ApiResponse<span class="token punctuation">;</span>
+<span class="token function">get</span><span class="token punctuation">(</span>uri <span class="token operator">:</span> string<span class="token punctuation">,</span> callback <span class="token operator">:</span> Function<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token function">put</span><span class="token punctuation">(</span>uri <span class="token operator">:</span> string<span class="token punctuation">,</span> callback <span class="token operator">:</span> Function<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token function">post</span><span class="token punctuation">(</span>uri <span class="token operator">:</span> string<span class="token punctuation">,</span> callback <span class="token operator">:</span> Function<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3>4. Add custom node Commands</h3> <p>To perform our actions in our project we have 4 commands for this</p> <ul><li><strong>npm run create</strong> : to create our function in AWS Lambda.</li> <li><strong>npm run deploy:dev</strong> : to upload local changes to AWS Lambda of course for the development version.</li> <li><strong>npm run deploy:prod</strong> : to upload local changes to AWS Lambda for the production version.</li> <li><strong>npm run delete</strong> : to delete our function.</li></ul> <p>the <strong><code>/package.json</code></strong> should look like this:</p> <pre class="language-undefined"><!----><code class="language-undefined">...
+  &quot;description&quot;: &quot;A lambda function that send email using aws ses&quot;,
+  &quot;main&quot;: &quot;build/index&quot;,
+  &quot;files&quot;: [
+    &quot;build/**/*.*&quot;,
+    &quot;package.json&quot;
+  ],
+  &quot;scripts&quot;: &#123;
+    &quot;create&quot;: &quot;tsc &amp;&amp; claudia create --api-module build/index --region us-east-1 --set-env-from-json env.json --policies policies&quot;,
+    &quot;deploy:dev&quot;: &quot;tsc &amp;&amp; claudia update --version dev --set-env-from-json dev.json&quot;,
+    &quot;deploy:prod&quot;: &quot;tsc &amp;&amp; claudia update --version prod --set-env-from-json prod.json&quot;,
+    &quot;delete&quot;: &quot;claudia destroy&quot;,
+    &quot;test&quot;: &quot;echo &quot;Error: no test specified&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  &quot;author&quot;: &quot;Ismael Messa&quot;,
+...</code><!----></pre> <h2>Implement the sending Service</h2> <p>This service uses the <strong>AWS-SDK</strong> module to perform this task in question and makes the process easier. The <strong><code>/src/sesSend.ts</code></strong> file implements this logic:</p> <p><a href="https://gist.github.com/messaismael/6e5e58338fbbda730e9ba85b79c4ddc5" rel="nofollow">View code snippet on GitHub Gist ↗</a></p> <h2>Implement the Route</h2> <p><strong><code>/src/index.ts</code></strong></p> <p><a href="https://gist.github.com/messaismael/7e811097f790ab32ede7a0d21c225eb6" rel="nofollow">View code snippet on GitHub Gist ↗</a></p> <h2>Test</h2> <p>To test we will use Postman, before going ahead and using this there are some configs to make according to the environment to use AWS SES:</p> <ul><li><strong>Dev</strong> : to send an email from a sender email to a recipient email, you need to verify both email addresses first using <a href="https://docs.aws.amazon.com/ses/latest/dg/verify-addresses-and-domains.html" rel="nofollow">Verified identities in Amazon SES</a>.</li> <li><strong>Prod</strong> : in production, the idea is to allow any email address to send emails to any recipient’s email address. Enabling this implies <a href="https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html" rel="nofollow">Moving out of the Amazon SES sandbox</a>.</li></ul> <p>now let’s go to PostMan:</p> <p><img src="/assets/img/article4/img1.png" alt="img1"/></p> <p>and in your inbox, you should receive an email like this:</p> <p><img src="/assets/img/article4/img2.png" alt="img2"/></p> <h2>Conclusion</h2> <p>To summarize, this article covered step-by-step instructions on how I implemented an email sending service using nodeJS. If it helped you, let me a <strong>clap</strong>/<strong>like</strong>/<strong>share</strong> Thank you 😉.</p> <p>The original repository is available <a href="https://github.com/messaismael/send-email-service" rel="nofollow">here</a>.</p><!--]--></div></article><!--]--><!----> <div style="display:none"><!--[--><a href="../../blog/2022-04-11-how-to-build-an-email-sending-service-with-serverless-in-aws/">en</a><a href="../../fr/blog/2022-04-11-how-to-build-an-email-sending-service-with-serverless-in-aws">fr</a><!--]--></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_e3a6vw = {
+						base: new URL("../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.10wmqbbm.js"),
+						import("../../_app/immutable/entry/app.CBnaowLf.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 6],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

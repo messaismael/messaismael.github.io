@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html class="dark" lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="text-scale" content="scale" />
+		<link href="../../_app/immutable/entry/start.10wmqbbm.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BII7gjJO.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/D04T-dpt.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/Dt-HX3Vu.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/app.CBnaowLf.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/GlKy7o4X.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/0.CgfFqwTu.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BulsLJy0.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/DwnQuuCI.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CFI0L1rS.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/6.MatdNBdC.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BelWyZaW.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/BkyziS5Q.js" rel="modulepreload">
+		<!--12qhfyh--><link rel="icon" href="/avatar.ico"/><!----><!--1teoznn--><!--[-1--><!--]--> <!--[0--><meta property="og:image" content="https://messaismael.com/assets/img/article3/cover.jpg"/><!--]--><!----><title>How to Implement an Uploading Service to S3 using NodeJS and TypeScript — Ismael Messa</title>
+		<link href="../../_app/immutable/assets/components.6Y4tvQPI.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/0.FdmXoCZ6.css" rel="stylesheet">
+	</head>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100"><img src="/assets/background-monochome.png" alt="" class="absolute inset-0 h-full w-full scale-105 object-cover transition-[filter] duration-700 blur"/> <div class="absolute inset-0 bg-linear-to-r transition-opacity duration-700 from-background/70 via-background/45 to-background/70"></div> <div class="absolute inset-0 bg-linear-to-t from-background/50 via-transparent to-background/40"></div></div> <header class="sticky top-0 z-20 grid grid-cols-1 border-b transition-colors duration-300 lg:grid-cols-[1fr_1.15fr_1fr] bg-transparent"><div class="flex h-16 md:h-20 items-center justify-between px-6 lg:px-10"><a href="/" class="font-display text-sm tracking-[0.2em] uppercase">Ismael Messa</a></div> <div class="hidden items-center justify-center lg:flex"><img src="/assets/Union.png" alt="" class="h-6 w-auto opacity-70 pr-5"/></div> <div class="flex h-14 md:h-20 items-center justify-end gap-8 px-6 lg:px-10"><!--[--><a href="/blog" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition text-foreground!">Blog</a><a href="/experience" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">Experience</a><a href="/about" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">About</a><a href="/contact" class="text-muted-foreground hover:text-foreground aria-[current=page]: text-sm tracking-wide uppercase transition">Contact</a><!--]--></div></header><!----> <!--[--><article class="mx-auto max-w-2xl px-6 py-16 lg:px-10"><a href="../../blog/" class="inline-flex items-center gap-2 text-sm tracking-wide text-muted-foreground uppercase transition hover:text-foreground"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5m0 0 6-6m-6 6 6 6"></path></svg> Back to Blog</a> <p class="mt-8 text-xs tracking-[0.2em] text-muted-foreground uppercase">2022-03-29</p> <h1 class="mt-2 font-display text-3xl font-semibold tracking-tight uppercase sm:text-4xl">How to Implement an Uploading Service to S3 using NodeJS and TypeScript</h1> <!--[-1--><!--]--> <!--[0--><div class="mt-8 aspect-16/9 overflow-hidden border"><img src="/assets/img/article3/cover.jpg" alt="" class="h-full w-full object-cover grayscale"/></div><!--]--> <!--[0--><div class="mt-6 flex flex-wrap gap-2"><!--[--><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">tutorial</span><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">awsS3</span><span class="rounded-full border px-3 py-1 text-xs text-muted-foreground">nodeJs</span><!--]--></div><!--]--> <div class="prose mt-10 max-w-none prose-invert prose-headings:font-display prose-headings:uppercase prose-a:text-foreground prose-img:border"><!--[--><p>Last month, I took a cloud computing course in AWS and then successfully passed the <strong>AWS Certified Cloud Practitioner</strong> certification. During this learning journey, I covered many cloud services in AWS, among which was <strong>Amazon s3(Simple Storage Service)</strong>. That’s why I wrote this article which describes in detail how to upload files to an S3 bucket with <strong>NodeJS</strong> and <strong>Typescript</strong>.</p> <p>Before starting, it would be better to introduce <strong>Amazon S3</strong> and present the tools we will use during our learning journey.</p> <p><strong>Amazon Simple Storage Service</strong>(Amazon S3) is a service offered by AWS that’s a scalable, high-speed, web-based storage service. This service is designed for online backup and archiving of data and applications on <strong>AWS</strong>.
+As tools that we used the develop this service, we have:</p> <ul><li><strong>AWS SDK</strong></li> <li><strong>Multer</strong></li> <li><strong>Express</strong></li> <li><strong>TypeScript</strong> (I like it 😉)</li></ul> <p>A brief description of our service is that it allows exclusively uploading image files (jpg, png, jpeg) to an Amazon S3 bucket provided.</p> <h2>Create a NodeJS project with TypeScript</h2> <p>Here we will build a nodeJS project firstly and secondly add TypeScript within.</p> <h3>Setup a NodeJs project</h3> <p>Initialize the project</p> <pre class="language-undefined"><!----><code class="language-undefined"> $ npm init</code><!----></pre> <h3>Configuring runtime</h3> <p>We will use the following dependencies</p> <p><strong>ts-node:</strong> It allows executing TypeScript files directly without precompiling.</p> <p><strong>nodemon:</strong> it will help us to automatically restart our service after file changes in a given directory are detected, and our is the <strong><code>/src</code></strong> directory.</p> <pre class="language-undefined"><!----><code class="language-undefined">$ npm i ts-node nodemon --save-dev</code><!----></pre> <p>create a <strong><code>/nodemon.json</code></strong> file in the root of your project with this code within</p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token punctuation">&#123;</span>
+<span class="token string">"watch"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"ext"</span><span class="token operator">:</span> <span class="token string">".ts,.js"</span><span class="token punctuation">,</span>
+<span class="token string">"ignore"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"exec"</span><span class="token operator">:</span> <span class="token string">"ts-node ./src/index.ts"</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h3>Add dependencies</h3> <p>We need some dependencies like <strong>express, dotenv, multer, cors,</strong> and <strong>aws-sdk</strong></p> <pre class="language-undefined"><!----><code class="language-undefined">$ npm i express dotenv multer cors aws-sdk</code><!----></pre> <h3>Add TypeScript</h3> <p>At this level, we will install <strong>Typescript</strong> then configure the compiler.
+Install <strong>TypeScript</strong>, and dependencies</p> <pre class="language-undefined"><!----><code class="language-undefined">$ npm i @types/cors @types/express @types/multer @types/node typescript --save-dev</code><!----></pre> <h3>Configuring the TypeScript Compiler</h3> <p>Add <strong><code>/tsconfig.json</code></strong> file with the configs below:</p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token punctuation">&#123;</span>
+<span class="token string">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token string">"target"</span><span class="token operator">:</span> <span class="token string">"es5"</span><span class="token punctuation">,</span>
+<span class="token string">"module"</span><span class="token operator">:</span> <span class="token string">"commonjs"</span><span class="token punctuation">,</span>
+<span class="token string">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"es6"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token string">"allowJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./src"</span><span class="token punctuation">,</span>  
+ <span class="token string">"outDir"</span><span class="token operator">:</span> <span class="token string">"./build"</span><span class="token punctuation">,</span>
+<span class="token string">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"noImplicitAny"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"esModuleInterop"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token string">"resolveJsonModule"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>A quick explanation of the content is that all <strong>ts</strong> files in the <strong><code>/src</code></strong> directory will be compiled to <strong>js</strong> file into a <strong><code>/build</code></strong> directory, and about the rest of the configs, check the doc <a href="https://www.typescriptlang.org/docs/handbook/compiler-options-in-msbuild.html" rel="nofollow">here</a> 😌.</p> <h2>Add node commands and environment variables</h2> <p>Here we will add some custom node commands to our <strong><code>/package.json</code></strong> file. It should look like this:</p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token punctuation">&#123;</span>
+<span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"upload-s3-servie"</span><span class="token punctuation">,</span>
+<span class="token string">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+<span class="token string">"description"</span><span class="token operator">:</span> <span class="token string">"upload file to s3 bucket"</span><span class="token punctuation">,</span>
+<span class="token string">"main"</span><span class="token operator">:</span> <span class="token string">"build/index"</span><span class="token punctuation">,</span>
+<span class="token string">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token string">"start"</span><span class="token operator">:</span> <span class="token string">"nodemon"</span><span class="token punctuation">,</span>
+<span class="token string">"build"</span><span class="token operator">:</span> <span class="token string">"rm -r ./build &amp;&amp; tsc"</span><span class="token punctuation">,</span>
+<span class="token string">"test"</span><span class="token operator">:</span> <span class="token string">"echo "Error: no test specified" &amp;&amp; exit 1"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token string">"author"</span><span class="token operator">:</span> <span class="token string">"Ismael Messa"</span><span class="token punctuation">,</span>
+<span class="token string">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span><span class="token punctuation">,</span>
+<span class="token string">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token string">"@types/cors"</span><span class="token operator">:</span> <span class="token string">"^2.8.12"</span><span class="token punctuation">,</span>
+<span class="token string">"@types/express"</span><span class="token operator">:</span> <span class="token string">"^4.17.13"</span><span class="token punctuation">,</span>
+<span class="token string">"@types/multer"</span><span class="token operator">:</span> <span class="token string">"^1.4.7"</span><span class="token punctuation">,</span>
+<span class="token string">"@types/node"</span><span class="token operator">:</span> <span class="token string">"^17.0.21"</span><span class="token punctuation">,</span>  
+ <span class="token string">"nodemon"</span><span class="token operator">:</span> <span class="token string">"^2.0.15"</span><span class="token punctuation">,</span>
+<span class="token string">"ts-node"</span><span class="token operator">:</span> <span class="token string">"^10.7.0"</span><span class="token punctuation">,</span>
+<span class="token string">"typescript"</span><span class="token operator">:</span> <span class="token string">"^4.6.2"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token string">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token string">"aws-sdk"</span><span class="token operator">:</span> <span class="token string">"^2.1095.0"</span><span class="token punctuation">,</span>
+<span class="token string">"cors"</span><span class="token operator">:</span> <span class="token string">"^2.8.5"</span><span class="token punctuation">,</span>
+<span class="token string">"dotenv"</span><span class="token operator">:</span> <span class="token string">"^16.0.0"</span><span class="token punctuation">,</span>
+<span class="token string">"express"</span><span class="token operator">:</span> <span class="token string">"^4.17.3"</span><span class="token punctuation">,</span>
+<span class="token string">"multer"</span><span class="token operator">:</span> <span class="token string">"^1.4.4"</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>as you can see, we have two custom commands:</p> <p><strong>npm start:</strong> to run our service locally.</p> <p><strong>npm run build:</strong> to build our service into the <strong><code>/build</code></strong> directory for production.</p> <p>Then add the  <strong><code>.env</code></strong> file with the following variables:</p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token constant">PORT</span><span class="token operator">=</span><span class="token number">8080</span>
+<span class="token constant">AWS_ACCESS_KEY_ID</span><span class="token operator">=</span>xxxxxxxxxxxx
+<span class="token constant">AWS_SECRET_ACCESS_KEY</span><span class="token operator">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+<span class="token constant">BUCKET_NAME</span><span class="token operator">=</span>bucket_name</code><!----></pre> <p>About <strong>AWS_ACCESS_KEY_ID</strong> and <strong>AWS_SECRET_ACCESS_KEY</strong>, you should have an AWS account. The best practice is to create a new <strong>IAM User</strong> and give it a permission policy (<strong>fullAccessS3</strong>) according to the task you want to perform and get the keys in the <strong>CSV file</strong>.</p> <p>Implement a config file to manage <strong>env</strong> variables</p> <p><strong><code>/src/config/index.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> dotenv <span class="token keyword">from</span> <span class="token string">'dotenv'</span><span class="token punctuation">;</span>
+
+dotenv<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">-</span> Config file
+  <span class="token operator">*</span><span class="token operator">/</span>
+  <span class="token keyword">export</span> <span class="token keyword">const</span> config<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  port<span class="token operator">:</span> number<span class="token punctuation">,</span>
+  aws_access_key_id<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  aws_secret_access_key<span class="token operator">:</span>string<span class="token punctuation">,</span>
+  bucket_name<span class="token operator">:</span> string
+  <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  port <span class="token operator">:</span> <span class="token function">Number</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">PORT</span><span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token number">8080</span><span class="token punctuation">,</span>
+  aws_access_key_id <span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">AWS_ACCESS_KEY_ID</span> <span class="token operator">??</span> <span class="token string">" "</span><span class="token punctuation">,</span>
+  aws_secret_access_key <span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">AWS_SECRET_ACCESS_KEY</span> <span class="token operator">??</span> <span class="token string">''</span><span class="token punctuation">,</span>
+  bucket_name<span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BUCKET_NAME</span> <span class="token operator">??</span> <span class="token string">'test-bucket'</span>
+  <span class="token punctuation">&#125;</span></code><!----></pre> <h2>Implement S3 services</h2> <p>After making this lot of configs, it’s time to go ahead into the TypeScript code 😎. Yeah! There are three <strong>s3</strong> services that we should implement :</p> <ul><li><strong>checkBucket</strong>: It’s a function that checks if the bucket with the current name has already existed in Amazon S3.</li></ul> <p><strong><code>/src/services/checkBucket.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> <span class="token constant">S3</span> <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"aws-sdk"</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">-</span> @name checkBucket
+<span class="token operator">-</span> @param <span class="token punctuation">&#123;</span><span class="token constant">S3</span><span class="token punctuation">&#125;</span> s3
+<span class="token operator">-</span> @returns <span class="token punctuation">&#123;</span>Promise<span class="token operator">&lt;</span><span class="token punctuation">&#123;</span>success<span class="token operator">:</span>boolean<span class="token punctuation">;</span> message<span class="token operator">:</span> string<span class="token punctuation">;</span> data<span class="token operator">:</span>string<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token punctuation">&#125;</span>
+  <span class="token operator">*</span><span class="token operator">/</span>
+  <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">checkBucket</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">s3<span class="token operator">:</span> <span class="token constant">S3</span><span class="token punctuation">,</span> bucket<span class="token operator">:</span>string</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> s3<span class="token punctuation">.</span><span class="token function">headBucket</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>Bucket<span class="token operator">:</span> bucket<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Bucket already Exist"</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>$response<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">&#123;</span> success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Bucket already Exist"</span><span class="token punctuation">,</span>data<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Error bucket don't exsit"</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">&#123;</span> success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Error bucket don't exsit"</span><span class="token punctuation">,</span>data<span class="token operator">:</span> error <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code><!----></pre> <ul><li><strong>createBucket</strong>: It’s also a function, but this one creates a bucket in Amazon S3 with the name provided in <strong><code>.env</code></strong> file in a specific region.</li></ul> <p><strong><code>/src/services/createBucket.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> <span class="token constant">S3</span> <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'aws-sdk'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> CreateBucketRequest <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'aws-sdk/clients/s3'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">"../config"</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">-</span> @name createBucket
+<span class="token operator">-</span> @param <span class="token punctuation">&#123;</span><span class="token constant">S3</span><span class="token punctuation">&#125;</span> s3
+<span class="token operator">-</span> @returns <span class="token punctuation">&#123;</span>Promise<span class="token operator">&lt;</span><span class="token punctuation">&#123;</span>success<span class="token operator">:</span>boolean<span class="token punctuation">;</span> message<span class="token operator">:</span> string<span class="token punctuation">;</span> data<span class="token operator">:</span> string<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token punctuation">&#125;</span>
+  <span class="token operator">*</span><span class="token operator">/</span>
+  <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">createBucket</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">s3<span class="token operator">:</span> <span class="token constant">S3</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+
+<span class="token keyword">const</span> params<span class="token operator">:</span> CreateBucketRequest <span class="token operator">=</span> <span class="token punctuation">&#123;</span> Bucket<span class="token operator">:</span> config<span class="token punctuation">.</span>bucket_name<span class="token punctuation">,</span>
+CreateBucketConfiguration<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<span class="token comment">// Set your region here</span>
+LocationConstraint<span class="token operator">:</span> <span class="token string">"ap-south-1"</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> s3<span class="token punctuation">.</span><span class="token function">createBucket</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Bucket Created Successfull"</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>Location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Bucket Created Successfull"</span><span class="token punctuation">,</span>data<span class="token operator">:</span> res<span class="token punctuation">.</span>Location<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Error: Unable to create bucket &#92;n"</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Unable to create bucket"</span><span class="token punctuation">,</span> data<span class="token operator">:</span> error<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <ul><li><strong>uploadToS3</strong>: That is the core function because the project logic is implemented there (uploading files to Amazon S3🧐).</li></ul> <p><strong><code>/src/services/uploadToS3.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> <span class="token constant">S3</span> <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"aws-sdk"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> fs <span class="token keyword">from</span> <span class="token string">'fs'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">"../config"</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">-</span> @name uploadToS3
+<span class="token operator">-</span> @param <span class="token punctuation">&#123;</span><span class="token constant">S3</span><span class="token punctuation">&#125;</span> s3
+<span class="token operator">-</span> @param <span class="token punctuation">&#123;</span>File<span class="token punctuation">&#125;</span> fileData
+<span class="token operator">-</span> @returns <span class="token punctuation">&#123;</span>Promise<span class="token operator">&lt;</span><span class="token punctuation">&#123;</span>success<span class="token operator">:</span>boolean<span class="token punctuation">;</span> message<span class="token operator">:</span> string<span class="token punctuation">;</span> data<span class="token operator">:</span> object<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token operator">></span><span class="token punctuation">&#125;</span>
+  <span class="token operator">*</span><span class="token operator">/</span>
+  <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">uploadToS3</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">s3<span class="token operator">:</span> <span class="token constant">S3</span><span class="token punctuation">,</span> fileData<span class="token operator">?</span><span class="token operator">:</span> Express<span class="token punctuation">.</span>Multer<span class="token punctuation">.</span>File</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> fileContent <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>fileData<span class="token operator">!</span><span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">const</span> params <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        Bucket<span class="token operator">:</span> config<span class="token punctuation">.</span>bucket_name<span class="token punctuation">,</span>
+        Key<span class="token operator">:</span> fileData<span class="token operator">!</span><span class="token punctuation">.</span>originalname<span class="token punctuation">,</span>
+        Body<span class="token operator">:</span> fileContent
+      <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> s3<span class="token punctuation">.</span><span class="token function">upload</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"File Uploaded with Successfull"</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>Location<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"File Uploaded with Successfull"</span><span class="token punctuation">,</span> data<span class="token operator">:</span> res<span class="token punctuation">.</span>Location<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>success<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Unable to Upload the file"</span><span class="token punctuation">,</span> data<span class="token operator">:</span> error<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>success<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token string">"Unalbe to access this file"</span><span class="token punctuation">,</span> data<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span></code><!----></pre> <h2>Implement the controller</h2> <p>Before implementing the controller, we need a function that initializes the bucket.</p> <p>This function must before creating a bucket check if it exists.</p> <p><strong><code>/src/services/index.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> <span class="token constant">S3</span> <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'aws-sdk'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> checkBucket <span class="token keyword">from</span> <span class="token string">'./checkBucket'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createBucket <span class="token keyword">from</span> <span class="token string">'./createBucket'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">"../config"</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">-</span> @name initBucket
+<span class="token operator">-</span> @returns <span class="token punctuation">&#123;</span><span class="token keyword">void</span><span class="token punctuation">&#125;</span>
+  <span class="token operator">*</span><span class="token operator">/</span>
+  <span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">initBucket</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">s3<span class="token operator">:</span> <span class="token constant">S3</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> bucketStatus <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">checkBucket</span><span class="token punctuation">(</span>s3<span class="token punctuation">,</span> config<span class="token punctuation">.</span>bucket_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token operator">!</span>bucketStatus<span class="token punctuation">.</span>success <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">// check if the bucket don't exist</span>
+<span class="token keyword">let</span> bucket <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">createBucket</span><span class="token punctuation">(</span>s3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// create new bucket</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>Yes! Now we can pass to the controller implementation, and with this part above, it will be pretty easy.</p> <p><strong><code>/src/controllers/index.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> initBucket <span class="token keyword">from</span> <span class="token string">"../services"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> <span class="token constant">S3</span> <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'aws-sdk'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> Request <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"express"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> uploadToS3 <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"../services/uploadToS3"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">"../config"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UploadController</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">static</span> <span class="token function-variable function">Upload</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token operator">:</span> Request<span class="token punctuation">,</span> res<span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">const</span> s3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">S3</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      accessKeyId<span class="token operator">:</span> config<span class="token punctuation">.</span>aws_access_key_id<span class="token punctuation">,</span>
+      secretAccessKey<span class="token operator">:</span> config<span class="token punctuation">.</span>aws_secret_access_key<span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Initialize bucket</span>
+    <span class="token keyword">await</span> <span class="token function">initBucket</span><span class="token punctuation">(</span>s3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// get file data through req.file thank to multer</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"file stobject"</span><span class="token punctuation">,</span> req<span class="token punctuation">.</span>file<span class="token punctuation">)</span>
+
+    <span class="token keyword">const</span> uplaodRes <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">uploadToS3</span><span class="token punctuation">(</span>s3<span class="token punctuation">,</span> req<span class="token punctuation">.</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>uplaodRes<span class="token punctuation">.</span>success<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>uplaodRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>uplaodRes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2>Implement the Route</h2> <p>It’s here that <code>multer</code> intervenes, which is a node.js middleware for handling <code>multipart/form-data</code> , used primarily for uploading files. It is written on top of <a href="https://github.com/mscdex/busboy" rel="nofollow">busboy</a> for maximum efficiency.</p> <h4>Config multer storage and fileFilter</h4> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> Request <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"express"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> multer<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> FileFilterCallback <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"multer"</span><span class="token punctuation">;</span>
+
+type <span class="token function-variable function">FileNameCallback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">error<span class="token operator">:</span> Error <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span> filename<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> multerConfig <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+storage <span class="token operator">:</span> multer<span class="token punctuation">.</span><span class="token function">diskStorage</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+destination<span class="token operator">:</span> <span class="token string">'uploads/'</span><span class="token punctuation">,</span>
+<span class="token function-variable function">filename</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token operator">:</span> Request<span class="token punctuation">,</span> file<span class="token operator">:</span> Express<span class="token punctuation">.</span>Multer<span class="token punctuation">.</span>File<span class="token punctuation">,</span> cb<span class="token operator">:</span> FileNameCallback</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token function">cb</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>originalname<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+<span class="token function-variable function">fileFilter</span> <span class="token operator">:</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token operator">:</span> Request<span class="token punctuation">,</span> file<span class="token operator">:</span> Express<span class="token punctuation">.</span>Multer<span class="token punctuation">.</span>File<span class="token punctuation">,</span> cb<span class="token operator">:</span> FileFilterCallback</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">.</span>mimetype <span class="token operator">===</span> <span class="token string">"image/jpeg"</span> <span class="token operator">||</span> file<span class="token punctuation">.</span>mimetype <span class="token operator">===</span> <span class="token string">"image/png"</span> <span class="token operator">||</span> file<span class="token punctuation">.</span>mimetype <span class="token operator">===</span> <span class="token string">"image/jpg"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">return</span> <span class="token function">cb</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token function">cb</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>now we can implement the route with the <strong>multer middleware</strong>.</p> <p><strong><code>/src/routes/index.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> express <span class="token keyword">from</span> <span class="token string">'express'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> multer <span class="token keyword">from</span> <span class="token string">'multer'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> UploadController <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'../controllers'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> multerConfig <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'../config/multerConfig'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> express<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> upload <span class="token operator">=</span> <span class="token function">multer</span><span class="token punctuation">(</span>multerConfig<span class="token punctuation">.</span>fileFilter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/upload"</span><span class="token punctuation">,</span> upload<span class="token punctuation">.</span><span class="token function">single</span><span class="token punctuation">(</span><span class="token string">'uploaded_file'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> UploadController<span class="token punctuation">.</span>Upload<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token punctuation">&#123;</span> router <span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code><!----></pre> <h3>Create a server with Express</h3> <p><strong><code>/src/index.ts</code></strong></p> <pre class="language-javascript"><!----><code class="language-javascript"><span class="token keyword">import</span> express <span class="token keyword">from</span> <span class="token string">"express"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> cors <span class="token keyword">from</span> <span class="token string">"cors"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> router <span class="token keyword">as</span> Router <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"./routes"</span>
+<span class="token keyword">import</span> config <span class="token keyword">from</span> <span class="token string">"./config"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> port <span class="token operator">=</span> config<span class="token punctuation">.</span>port<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> express<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">cors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Enable all cors requests for all routes</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> limit<span class="token operator">:</span> <span class="token string">'50000mb'</span><span class="token punctuation">,</span> extended<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// user route for all path</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>success<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>message<span class="token operator">:</span> <span class="token string">'Upload S3 Service is ready'</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"Resource Not Found"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">&#96;</span><span class="token string">Server is listening on port</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>port<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&#92;nYou can access via http://localhost:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>port<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token template-punctuation string">&#96;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <h2>Test the API with PostMan</h2> <p>Launch the service with the following command</p> <pre class="language-undefined"><!----><code class="language-undefined">$ npm start</code><!----></pre> <p>After getting the Endpoint from the console, paste it into Postman and provide your file as data like this:</p> <p><img src="/assets/img/article3/img1.png" alt="img1"/></p> <p>and to Amazon S3 you should see the currently uploaded file in the specific bucket name for me is uploadservice:</p> <p><img src="/assets/img/article3/img2.png" alt="img2"/></p> <h2>Conclusion</h2> <p>I hope this article has helped you!</p> <p>The source code is available in this repository on <a href="https://github.com/messaismael/upload-s3-service" rel="nofollow">GitHub</a>.</p><!--]--></div></article><!--]--><!----> <div style="display:none"><!--[--><a href="../../blog/2022-03-29-how-to-Implement-an-uploading-service-to-s3-using-nodejs-and-typescript/">en</a><a href="../../fr/blog/2022-03-29-how-to-Implement-an-uploading-service-to-s3-using-nodejs-and-typescript">fr</a><!--]--></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_e3a6vw = {
+						base: new URL("../..", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.10wmqbbm.js"),
+						import("../../_app/immutable/entry/app.CBnaowLf.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 6],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
