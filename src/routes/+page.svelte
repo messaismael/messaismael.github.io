@@ -53,13 +53,13 @@
 	<meta property="og:url" content={`${siteUrl}/`} />
 	<meta property="og:title" content={m.seo_home_title()} />
 	<meta property="og:description" content={m.seo_home_description()} />
-	<meta property="og:image" content={`${siteUrl}/assets/preview.png`} />
+	<meta property="og:image" content={`${siteUrl}/avatar.png`} />
 	<meta property="og:image:alt" content={m.seo_home_image_alt()} />
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={m.seo_home_title()} />
 	<meta name="twitter:description" content={m.seo_home_description()} />
-	<meta name="twitter:image" content={`${siteUrl}/assets/preview.png`} />
+	<meta name="twitter:image" content={`${siteUrl}/avatar.png`} />
 	<meta name="twitter:image:alt" content={m.seo_home_image_alt()} />
 
 	<!-- eslint-disable-next-line svelte/no-at-html-tags, @typescript-eslint/no-unused-expressions -->

@@ -15,7 +15,7 @@
 	let { title, description, imageAlt, path, type = 'website', schema }: Props = $props();
 
 	const siteUrl = $derived(page.url.origin);
-	const imageUrl = $derived(`${siteUrl}/assets/preview.png`);
+	const imageUrl = $derived(`${siteUrl}/avatar.png`);
 	const canonicalUrl = $derived(`${siteUrl}${path}`);
 	const structuredData = $derived(
 		schema ?? {

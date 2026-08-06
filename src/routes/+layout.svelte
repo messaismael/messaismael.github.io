@@ -16,8 +16,8 @@
 <!-- Background: persists across navigation (layout stays mounted) — sharp on the home hero, blurred to ambient texture everywhere else -->
 <div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100">
 	<img
-		src="/assets/background-monochome.png"
-		alt=""
+		src="/background.png"
+		alt="background Image"
 		class={`absolute inset-0 h-full w-full scale-105 object-cover transition-[filter] duration-700 ${isHome ? '' : 'blur'}`}
 	/>
 	<div
