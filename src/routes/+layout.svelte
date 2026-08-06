@@ -16,7 +16,7 @@
 <!-- Background: persists across navigation (layout stays mounted) — sharp on the home hero, blurred to ambient texture everywhere else -->
 <div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100">
 	<img
-		src="/background-opt.jpg"
+		src="/background.jpg"
 		alt=""
 		loading="eager"
 		decoding="async"
