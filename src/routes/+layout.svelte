@@ -16,8 +16,10 @@
 <!-- Background: persists across navigation (layout stays mounted) — sharp on the home hero, blurred to ambient texture everywhere else -->
 <div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100">
 	<img
-		src="/background.png"
-		alt="background Image"
+		src="/background-opt.jpg"
+		alt=""
+		loading="eager"
+		decoding="async"
 		class={`absolute inset-0 h-full w-full scale-105 object-cover transition-[filter] duration-700 ${isHome ? '' : 'blur'}`}
 	/>
 	<div

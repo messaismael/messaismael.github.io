@@ -42,7 +42,13 @@
 
 	{#if post.metadata['cover-img']}
 		<div class="mt-8 aspect-16/9 overflow-hidden border">
-			<img src={post.metadata['cover-img']} alt="" class="h-full w-full object-cover grayscale" />
+			<img
+				src={post.metadata['cover-img']}
+				alt=""
+				loading="eager"
+				decoding="async"
+				class="h-full w-full object-cover grayscale"
+			/>
 		</div>
 	{/if}
 

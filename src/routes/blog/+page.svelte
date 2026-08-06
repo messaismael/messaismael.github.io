@@ -56,6 +56,8 @@
 									<img
 										src={post.metadata['cover-img']}
 										alt=""
+										loading="lazy"
+										decoding="async"
 										class="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105"
 									/>
 								</div>
