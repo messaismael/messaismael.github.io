@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Hero } from '$lib/components';
+	import { AboutIntro, Hero } from '$lib/components';
 </script>
 
 <Hero />
+<AboutIntro />

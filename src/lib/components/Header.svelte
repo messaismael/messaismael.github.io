@@ -25,7 +25,7 @@
 <header
 	class={`sticky top-0 z-20 grid grid-cols-1 border-b transition-colors duration-300 lg:grid-cols-[1fr_1.15fr_1fr] ${scrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-transparent'}`}
 >
-	<div class="flex h-20 items-center justify-between px-6 lg:px-10">
+	<div class="flex h-16 md:h-20 items-center justify-between px-6 lg:px-10">
 		<a href="/" class="font-display text-sm tracking-[0.2em] uppercase">{m.nav_brand()}</a>
 	</div>
 
@@ -33,7 +33,7 @@
 		<img src="/assets/Union.png" alt="" class="h-6 w-auto opacity-70 pr-5" />
 	</div>
 
-	<div class="flex h-20 items-center justify-end gap-8 px-6 lg:px-10">
+	<div class="flex h-14 md:h-20 items-center justify-end gap-8 px-6 lg:px-10">
 		{#each navLinks as link (link.href)}
 			<a
 				href={link.href}
