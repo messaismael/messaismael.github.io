@@ -11,7 +11,7 @@
 	let isHome = $derived(page.url.pathname === '/');
 </script>
 
-<svelte:head><link rel="icon" href='/favicon.ico' /></svelte:head>
+<svelte:head><link rel="icon" href='/avatar.ico' /></svelte:head>
 
 <!-- Background: persists across navigation (layout stays mounted) — sharp on the home hero, blurred to ambient texture everywhere else -->
 <div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100">

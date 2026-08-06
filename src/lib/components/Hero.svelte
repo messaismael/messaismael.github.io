@@ -95,12 +95,18 @@
 	<!-- Colonne droite : case study -->
 	<div class="relative flex flex-col">
 		<div
-			class="relative flex min-h-[220px] flex-1 items-center justify-center overflow-hidden border-b"
+			class="relative flex min-h-[220px] flex-1 flex-col items-center justify-center overflow-hidden border-b px-8 py-12 text-center"
 			style="background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 18px);"
 		>
-			<span class="text-xs tracking-[0.3em] text-muted-foreground uppercase"
+			<!-- <span class="text-xs tracking-[0.3em] text-muted-foreground uppercase"
 				>{m.case_study_preview()}</span
-			>
+			> -->
+			<blockquote class="mt-8 max-w-sm font-display text-xl leading-tight tracking-tight sm:text-2xl">
+				“{m.case_study_quote()}”
+				<footer class="mt-4 font-sans text-[0.65rem] tracking-[0.22em] text-muted-foreground uppercase">
+					— {m.case_study_quote_author()}
+				</footer>
+			</blockquote>
 		</div>
 
 		<div class="flex flex-1 flex-col justify-between px-6 py-10 lg:px-10">
