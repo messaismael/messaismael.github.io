@@ -5,7 +5,7 @@ const publicPages = [
 	{ path: '/', priority: '1.0' },
 	{ path: '/about/', priority: '0.8' },
 	{ path: '/experience/', priority: '0.8' },
-	{ path: '/work/', priority: '0.8' },
+	// { path: '/work/', priority: '0.8' },
 	{ path: '/blog/', priority: '0.7' }
 ];
 

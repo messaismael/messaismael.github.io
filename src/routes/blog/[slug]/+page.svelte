@@ -9,10 +9,15 @@
 
 	const siteUrl = $derived(page.url.origin);
 	const post = $derived(getPost(data.slug)!);
+	const canonicalUrl = $derived(`${siteUrl}/blog/${encodeURIComponent(data.slug)}/`);
 </script>
 
 <svelte:head>
 	<title>{post.metadata.title} — Ismael Messa</title>
+	<meta name="robots" content="index, follow" />
+	<link rel="canonical" href={canonicalUrl} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={canonicalUrl} />
 	{#if post.metadata.subtitle}
 		<meta name="description" content={post.metadata.subtitle} />
 	{/if}
