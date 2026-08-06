@@ -4,7 +4,6 @@
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { Header } from '$lib/components';
 
 	let { children } = $props();
@@ -12,7 +11,7 @@
 	let isHome = $derived(page.url.pathname === '/');
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+<svelte:head><link rel="icon" href='/favicon.ico' /></svelte:head>
 
 <!-- Background: persists across navigation (layout stays mounted) — sharp on the home hero, blurred to ambient texture everywhere else -->
 <div class="fixed inset-0 -z-10 opacity-60 lg:opacity-100">

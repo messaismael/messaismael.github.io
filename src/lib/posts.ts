@@ -1,3 +1,5 @@
+import type { Component } from 'svelte';
+
 export interface PostMetadata {
 	layout: 'post';
 	title: string;
@@ -14,10 +16,10 @@ export interface PostMetadata {
 export interface Post {
 	slug: string;
 	metadata: PostMetadata;
-	component: unknown;
+	component: Component;
 }
 
-const modules = import.meta.glob<{ metadata: PostMetadata; default: unknown }>(
+const modules = import.meta.glob<{ metadata: PostMetadata; default: Component }>(
 	'/src/lib/posts/*.md',
 	{ eager: true }
 );

@@ -18,7 +18,11 @@ export default defineConfig({
 			adapter: adapter({ fallback: '404.html' }),
 			preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
 			extensions: ['.svelte', '.svx', '.md'],
-			prerender: { handleHttpError: 'warn' }
+			prerender: {
+				handleHttpError: 'warn',
+				entries: ['*', '/sitemap.xml', '/robots.txt'],
+				origin: 'https://messaismael.com'
+			}
 		}),
 
 		paraglideVitePlugin({
