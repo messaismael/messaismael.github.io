@@ -101,6 +101,7 @@
 
 	.about-portrait {
 		position: relative;
+		order: -1;
 		align-self: start;
 		justify-self: center;
 		width: min(72vw, 22rem);
@@ -183,6 +184,7 @@
 		}
 
 		.about-portrait {
+			order: 0;
 			margin-top: -2rem;
 			justify-self: end;
 		}
